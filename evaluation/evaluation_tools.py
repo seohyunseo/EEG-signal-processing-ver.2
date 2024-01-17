@@ -20,11 +20,11 @@ def evaluate_with_tsne(X, y, feature_name=None):
     plt.ylabel('t-SNE Dimension 2')
     plt.clf()
     # Create a scatter plot
-    plt.figure(figsize=(8, 6))
-    for i in range(4):
-        indices = (y == i)
-        plt.scatter(X_embedded[indices, 0], X_embedded[indices, 1], label=f'Class {i}')
-    # plt.scatter(X_embedded[:, 0],X_embedded[:, 1], 15, y)
+    # plt.figure(figsize=(8, 6))
+    # for i in range(4):
+    #     indices = (y == i)
+    #     plt.scatter(X_embedded[indices, 0], X_embedded[indices, 1], label=f'Class {i}')
+    plt.scatter(X_embedded[:, 0],X_embedded[:, 1], 15, y)
     plt.show()
 
 def evaluate_with_randomforest(X, y, feature_name=None, show=True):
