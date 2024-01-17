@@ -14,20 +14,23 @@ def plot_confusion_matrix(y_test, y_pred, labels=None):
 def evaluate_with_tsne(X, y, feature_name=None):
 
     print("[Result of t-SNE]")
-    y = y.reshape(-1)
     X_embedded = TSNE(n_components=2, n_iter=1000, random_state=42).fit_transform(X)
     plt.title(f't-SNE Result: {feature_name}')
     plt.xlabel('t-SNE Dimension 1')
     plt.ylabel('t-SNE Dimension 2')
     plt.clf()
-    plt.scatter(X_embedded[:, 0],X_embedded[:, 1], 15, y)
+    # Create a scatter plot
+    plt.figure(figsize=(8, 6))
+    for i in range(4):
+        indices = (y == i)
+        plt.scatter(X_embedded[indices, 0], X_embedded[indices, 1], label=f'Class {i}')
+    # plt.scatter(X_embedded[:, 0],X_embedded[:, 1], 15, y)
     plt.show()
 
 def evaluate_with_randomforest(X, y, feature_name=None, show=True):
-    y = y.reshape([y.shape[0]])
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    clf = RandomForestClassifier(n_estimators=100, random_state=42)
+    clf = RandomForestClassifier(criterion='entropy', n_estimators=100, random_state=42)
     # Train the classifier
     clf.fit(X_train, y_train)
     # Make predictions on the test set
