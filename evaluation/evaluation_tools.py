@@ -25,7 +25,7 @@ def evaluate_with_tsne(X, y, feature_name=None):
     #     indices = (y == i)
     #     plt.scatter(X_embedded[indices, 0], X_embedded[indices, 1], label=f'Class {i}')
     plt.scatter(X_embedded[:, 0],X_embedded[:, 1], 15, y)
-    plt.show()
+    # plt.show()
 
 def evaluate_with_randomforest(X, y, feature_name=None, show=True):
     # Split the data into training and testing sets
